@@ -1,7 +1,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import path from 'path';
 import dotenv from 'dotenv';
-import { createAdminDataLayer } from 'firestore-ts-client-builder';
+import { createAdminDataLayer } from '@voxityai/firestore-ts-client-builder';
 
 // Load environment variables from .env file
 dotenv.config();
