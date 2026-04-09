@@ -9,7 +9,7 @@
   "private": true,
   "scripts": {
     "start": "lerna run start --scope react-app-example",
-    "build": "yarn workspace firestore-ts-client-builder build && yarn workspace server-scripts build",
+    "build": "yarn workspace @voxityai/firestore-ts-client-builder build && yarn workspace server-scripts build",
     "lint": "lerna run lint",
     "generate-data": "yarn workspace react-app-example generate-data && yarn workspace server-scripts generate-data",
     "publish-builder": "npx lerna publish",
