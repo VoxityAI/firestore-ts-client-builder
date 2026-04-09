@@ -1,7 +1,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import path from 'path';
 import dotenv from 'dotenv';
-import { createClientDataLayer } from 'firestore-ts-client-builder';
+import { createClientDataLayer } from '@voxityai/firestore-ts-client-builder';
 
 // Load environment variables from .env file
 dotenv.config({ path: path.join(__dirname, '../.env.local') });
