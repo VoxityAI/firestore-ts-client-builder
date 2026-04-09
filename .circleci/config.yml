@@ -27,7 +27,9 @@ jobs:
       - run: yarn install
       - run:
             name: Auth with registry
-            command: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/project/.npmrc
+            command: |
+              echo "@voxityai:registry=https://npm.pkg.github.com" > ~/project/.npmrc
+              echo "//npm.pkg.github.com/:_authToken=$NPM_TOKEN" >> ~/project/.npmrc
       - run: yarn publish-builder --canary --preid canary --yes
 
 workflows:

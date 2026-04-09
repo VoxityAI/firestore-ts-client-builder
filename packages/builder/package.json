@@ -1,7 +1,10 @@
 {
-  "name": "firestore-ts-client-builder",
+  "name": "@voxityai/firestore-ts-client-builder",
   "version": "0.1.0",
   "main": "dist/index.js",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
   "author": "Reinier Guerra",
   "license": "MIT",
   "files": [
