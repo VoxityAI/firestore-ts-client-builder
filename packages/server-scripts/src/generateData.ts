@@ -117,6 +117,22 @@ createAdminDataLayer({
                         },
                     },
                 },
+            },
+            user: {
+                properties: {},
+                subtypeDiscriminator: 'role',
+                subtypes: {
+                    admin: {
+                        properties: {
+                            admin: { type: 'boolean', isRequired: true },
+                        },
+                    },
+                    user: {
+                        properties: {
+                            user: { type: 'boolean', isRequired: true },
+                        },
+                    },
+                }
             }
         },
     },
