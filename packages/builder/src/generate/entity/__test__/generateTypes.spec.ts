@@ -38,4 +38,34 @@ export type Custom = BaseCustom;
         const actual = writeFileSyncMock.mock.calls[0][1];
         expect(actual).toEqual(expected);
     });
+
+    it('should append | null to array type when isNullable is true', () => {
+        writeFileSyncMock.mockClear();
+        generateTypes({
+            entityName: 'Schedule',
+            outdir: 'src',
+            parents: [],
+            entity: {
+                properties: {
+                    weekDays: {
+                        type: 'array',
+                        items: { type: 'number' },
+                        isRequired: false,
+                        isNullable: true,
+                    },
+                },
+            },
+        } as any);
+        const expected = `import { BaseEntity } from "../types";
+
+interface BaseSchedule extends BaseEntity {
+  id: string;
+  weekDays?: Array<number> | null;
+}
+
+export type Schedule = BaseSchedule;
+`;
+        const actual = writeFileSyncMock.mock.calls[0][1];
+        expect(actual).toEqual(expected);
+    });
 });
