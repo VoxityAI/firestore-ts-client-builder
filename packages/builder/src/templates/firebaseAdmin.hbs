@@ -1,4 +1,4 @@
-import { initializeApp, applicationDefault, cert } from 'firebase-admin/app';
+import { initializeApp, getApps, getApp, applicationDefault, cert } from 'firebase-admin/app';
 import { getAuth } from 'firebase-admin/auth';
 import { getFirestore } from 'firebase-admin/firestore';
 
@@ -10,12 +10,17 @@ const credential = {{#if applicationCredentials}}cert({
     clientEmail: "{{applicationCredentials.client_email}}",
     privateKey?: `{{applicationCredentials.private_key}}`,
 }){{else}}applicationDefault(){{/if}};
-export const app = initializeApp({
+const appConfig = {
     credential,
     {{#each firebaseAdminConfig}}
         {{name}}: "{{value}}",
     {{/each}}
-}{{#if appName}}, "{{appName}}"{{/if}});
+};
+{{#if appName}}
+export const app = getApps().find(a => a.name === "{{appName}}") ?? initializeApp(appConfig, "{{appName}}");
+{{else}}
+export const app = getApps().length ? getApp() : initializeApp(appConfig);
+{{/if}}
 export const db = getFirestore(app{{#if firestoreConfig}}, "{{firestoreConfig.databaseId}}"{{/if}});
 {{#if firestoreConfig.ignoreUndefinedProperties}}
 db.settings({ ignoreUndefinedProperties: true });
